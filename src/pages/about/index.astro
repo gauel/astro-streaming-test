@@ -1,0 +1,23 @@
+---
+import Layout from "@layout/Layout.astro";
+
+const personResponse = await fetch("https://randomuser.me/api/");
+const personData = await personResponse.json();
+const randomPerson = personData.results[0];
+
+const factResponse = await fetch("https://catfact.ninja/fact");
+const factData = await factResponse.json();
+
+const delayResponse = await fetch("https://hub.dummyapis.com/delay?seconds=2");
+const delayData = await delayResponse;
+---
+
+<Layout>
+	<h1 class="text-xl font-bold">No streaming</h1>
+	<p>Fetch on the page, thus delay:</p>
+	<div class="flex flex-col gap-4 p-4 bg-black/10 rounded-xl">
+		<p>Random name: {randomPerson.name.first}</p>
+		<p>Random fact: {factData.fact}</p>
+		<p>2 seconds delay</p>
+	</div>
+</Layout>

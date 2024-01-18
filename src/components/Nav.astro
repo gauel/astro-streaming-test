@@ -1,0 +1,21 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+
+const links = [
+	{ href: "", text: "Streaming" },
+	{ href: "about", text: "No streaming" },
+];
+---
+
+<nav class="text-sky-500 flex gap-4 text-xs uppercase p-4 bg-sky-50">
+	{
+		links.map((link) => (
+			<a
+				href={`/${link.href}`}
+				class={`hover:underline ${link.href === currentPath && "underline"}`}>
+				{link.text}
+			</a>
+		))
+	}
+</nav>
